@@ -1,19 +1,75 @@
+import eyeluxImg from '../assets/eyelux_Opticals.png';
+import sithiImg from '../assets/Sithi_menswear.png';
+import jioImg from '../assets/Jio_Menswear.png';
+
 export interface ProjectItem {
   id: string;
   title: string;
   subtitle: string;
-  category: 'EdTech' | 'E-Commerce' | 'Portfolio' | 'AI & SaaS' | 'Web Applications';
+  category: string;
   description: string;
   tags: string[];
   metrics: { label: string; value: string }[];
   liveUrl: string;
   githubUrl?: string;
-  gradient: string;
-  codeSnippet: string;
+  gradient?: string;
+  codeSnippet?: string;
   previewImage?: string;
+  imageAlt?: string;
 }
 
 export const PROJECTS_DATA: ProjectItem[] = [
+  {
+    id: 'eyelux-optics',
+    title: 'Eyelux Optics',
+    subtitle: 'Official Optical Showroom & Eyewear Web Platform',
+    category: 'Optical Store Website',
+    description: 'Modern optical showroom and eyewear platform engineered for high-resolution optical frames display, instant eye-test appointment booking, and seamless mobile browsing.',
+    tags: ['React', 'Tailwind CSS', 'Mobile First', 'Optical Retail', 'Vercel Edge'],
+    metrics: [
+      { label: 'Mobile Score', value: '98/100' },
+      { label: 'Store Leads', value: '+74%' },
+      { label: 'Load Time', value: '0.5s' },
+    ],
+    liveUrl: 'https://eyelux-optics.vercel.app/',
+    gradient: 'from-blue-600/30 via-cyan-500/20 to-indigo-600/10',
+    previewImage: eyeluxImg,
+    imageAlt: 'Eyelux Optics - Official Optical Showroom Website Homepage',
+  },
+  {
+    id: 'sithi-menswear',
+    title: 'Sithi Menswear',
+    subtitle: 'Luxury Bespoke Men\'s Fashion & Heritage Tailoring',
+    category: 'Men\'s Fashion E-Commerce',
+    description: 'Premium bespoke menswear e-commerce experience showcasing heritage master tailoring, rare Giza fabrics, express worldwide shipping, and bespoke tailoring consultation.',
+    tags: ['React', 'Tailwind CSS', 'Luxury E-Commerce', 'Bespoke UI', 'Vercel Edge'],
+    metrics: [
+      { label: 'Engagement', value: '4.6x' },
+      { label: 'Catalog Browsing', value: '88%' },
+      { label: 'Edge Latency', value: '< 120ms' },
+    ],
+    liveUrl: 'https://sitthi-menswear.vercel.app/',
+    gradient: 'from-emerald-600/30 via-teal-500/20 to-slate-900/10',
+    previewImage: sithiImg,
+    imageAlt: 'Sithi Menswear - Luxury Bespoke Men\'s Fashion E-Commerce Homepage',
+  },
+  {
+    id: 'jio-menswear',
+    title: 'Jio Menswear',
+    subtitle: 'Haute Couture Men\'s Fashion & Retail Showroom',
+    category: 'Men\'s Fashion Store',
+    description: 'Vibrant modern fashion retail web application highlighting showroom collections, contemporary casuals, and interactive product displays with ultra-fast edge delivery.',
+    tags: ['React', 'Tailwind CSS', 'Retail Showcase', 'Vite', 'Vercel Edge'],
+    metrics: [
+      { label: 'Visual Clarity', value: 'Retina HD' },
+      { label: 'Visitor Growth', value: '+65%' },
+      { label: 'Bounce Rate', value: '-42%' },
+    ],
+    liveUrl: 'https://jio-menswear.vercel.app/',
+    gradient: 'from-amber-500/30 via-yellow-400/20 to-slate-900/10',
+    previewImage: jioImg,
+    imageAlt: 'Jio Menswear - Haute Couture Fashion Store Homepage',
+  },
   {
     id: 'speakflow',
     title: 'SpeakFlow',

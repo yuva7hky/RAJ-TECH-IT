@@ -1,98 +1,87 @@
 import { useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
-import { useLenisScroll } from './hooks/useLenisScroll';
-import { ParticleCanvas } from './components/UI/ParticleCanvas';
-import { LaptopScrollCanvas } from './components/UI/LaptopScrollCanvas';
+import { Router, useRouter } from './router/Router';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { FloatingContact } from './components/layout/FloatingContact';
-import { LoadingScreen } from './components/sections/LoadingScreen';
-import { Hero } from './components/sections/Hero';
-import { ScrollStory } from './components/sections/ScrollStory';
-import { About } from './components/sections/About';
-import { Services } from './components/sections/Services';
-import { FeaturedProjects } from './components/sections/FeaturedProjects';
-import { Process } from './components/sections/Process';
-import { TechStack } from './components/sections/TechStack';
-import { Founder } from './components/sections/Founder';
-import { WhyChooseUs } from './components/sections/WhyChooseUs';
-import { Pricing } from './components/sections/Pricing';
-import { Testimonials } from './components/sections/Testimonials';
-import { FAQ } from './components/sections/FAQ';
-import { Contact } from './components/sections/Contact';
+import { IntroVideo } from './components/layout/IntroVideo';
 
-export function App() {
-  const [loading, setLoading] = useState(true);
-  useLenisScroll();
+// Separate Page Components
+import { HomePage } from './pages/HomePage';
+import { AboutPage } from './pages/AboutPage';
+import { ServicesPage } from './pages/ServicesPage';
+import { ProjectsPage } from './pages/ProjectsPage';
+import { ProcessPage } from './pages/ProcessPage';
+import { TechStackPage } from './pages/TechStackPage';
+import { FounderPage } from './pages/FounderPage';
+import { PricingPage } from './pages/PricingPage';
+import { ContactPage } from './pages/ContactPage';
+
+function AppContent() {
+  const { currentPath } = useRouter();
+  const [introCompleted, setIntroCompleted] = useState(() => {
+    try {
+      return sessionStorage.getItem('raj_tech_intro_played_session') === 'true';
+    } catch {
+      return true;
+    }
+  });
+
+  const renderActiveRoute = () => {
+    switch (currentPath) {
+      case '/':
+        return <HomePage />;
+      case '/about':
+        return <AboutPage />;
+      case '/services':
+        return <ServicesPage />;
+      case '/projects':
+        return <ProjectsPage />;
+      case '/process':
+        return <ProcessPage />;
+      case '/tech-stack':
+        return <TechStackPage />;
+      case '/founder':
+        return <FounderPage />;
+      case '/pricing':
+        return <PricingPage />;
+      case '/contact':
+        return <ContactPage />;
+      default:
+        return <HomePage />;
+    }
+  };
 
   return (
-    <div className="relative min-h-screen bg-[#030712] text-slate-100 selection:bg-cyan-500/30 selection:text-cyan-200 overflow-x-hidden">
+    <div className="relative min-h-screen flex flex-col bg-[#F4F8FC] text-[#102A43] overflow-x-hidden">
       
-      {/* 1. Futuristic Loading Screen */}
-      <AnimatePresence mode="wait">
-        {loading && (
-          <LoadingScreen onComplete={() => setLoading(false)} />
-        )}
-      </AnimatePresence>
+      {/* 1. Intro Video Experience (Plays on first visit of browser session) */}
+      {!introCompleted && (
+        <IntroVideo onComplete={() => setIntroCompleted(true)} />
+      )}
 
-      {/* Layer 1: Current website background */}
-      <ParticleCanvas />
-
-      {/* Layer 2 & 3: Laptop frame scroll canvas + soft dark overlay */}
-      <LaptopScrollCanvas />
-
-      {/* Navigation Header */}
+      {/* 2. Main Navigation Bar */}
       <Navbar />
 
-      {/* Main Homepage Storytelling Flow */}
-      <main className="relative z-10">
-        {/* 2. 3D Hero Section */}
-        <Hero />
-
-        {/* 3. Interactive Scroll Compilation Storytelling */}
-        <ScrollStory />
-
-        {/* 4. About Section */}
-        <About />
-
-        {/* 5. Enterprise Services Engine */}
-        <Services />
-
-        {/* 6. Featured Digital Solutions (Real Projects Showcase) */}
-        <FeaturedProjects />
-
-        {/* 7. Development Process Timeline */}
-        <Process />
-
-        {/* 8. Tech Stack Radar */}
-        <TechStack />
-
-        {/* 9. Founder Section (YUVARAJ.M) */}
-        <Founder />
-
-        {/* 10. Why Choose Us (6 Pillars & Stats) */}
-        <WhyChooseUs />
-
-        {/* 11. Pricing Section (INR Currency) */}
-        <Pricing />
-
-        {/* 12. Client Testimonials */}
-        <Testimonials />
-
-        {/* 13. Frequently Asked Questions */}
-        <FAQ />
-
-        {/* 14. Contact Section (7 Fields, Direct Tel/Email) */}
-        <Contact />
+      {/* 3. Active Page Route Container */}
+      <main className="flex-1 flex flex-col">
+        {renderActiveRoute()}
       </main>
 
-      {/* Footer */}
+      {/* 4. Shared Footer */}
       <Footer />
 
-      {/* Floating Quick Contact Widget */}
+      {/* 5. Floating Quick Contact Shortcut */}
       <FloatingContact />
 
     </div>
+  );
+}
+
+export function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
   );
 }
 

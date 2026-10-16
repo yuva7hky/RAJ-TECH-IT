@@ -26,7 +26,7 @@ export const FAQ_DATA: FAQItem[] = [
   },
   {
     id: 'faq-4',
-    question: 'Can RAJ TECH SOLUTIONS integrate AI and LLMs into our existing software?',
+    question: 'Can Raj Tech IT integrate AI and LLMs into our existing software?',
     answer: 'Yes! We specialize in embedding custom OpenAI models, vector embeddings, local LLMs, and RAG pipelines into existing legacy databases and modern React/Node applications.',
     category: 'AI Capabilities',
   },
@@ -38,7 +38,7 @@ export const FAQ_DATA: FAQItem[] = [
   },
   {
     id: 'faq-6',
-    question: 'How do we get started with RAJ TECH SOLUTIONS?',
+    question: 'How do we get started with Raj Tech IT?',
     answer: 'Simply fill out our contact form or send an email to ajayarun177@gmail.com. We will schedule a free 30-minute technical discovery call to review your goals and deliver a detailed scope proposal within 48 hours.',
     category: 'Onboarding',
   },

@@ -69,7 +69,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           transition={{ delay: 0.2 }}
           className="font-display font-black text-2xl text-white tracking-wider mb-1"
         >
-          RAJ TECH SOLUTIONS
+          Raj Tech IT
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}

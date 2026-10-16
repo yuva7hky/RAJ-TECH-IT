@@ -21,19 +21,19 @@ export const WhyChooseUs: React.FC = () => {
       icon: Search,
       title: 'SEO Optimized',
       subtitle: 'Core Web Vitals 99+',
-      desc: 'Search engine optimization baked directly into clean SSR markup, open graph metadata, and fast image delivery.',
+      desc: 'Search engine optimization baked directly into clean markup, semantic tags, and optimized asset delivery.',
     },
     {
       icon: Cpu,
       title: 'Scalable Architecture',
-      subtitle: 'Microservices & Clean Code',
+      subtitle: 'Modular Clean Code',
       desc: 'Decoupled frontend & backend architectures built to scale gracefully from 10 to 1,000,000 active users.',
     },
     {
       icon: Palette,
-      title: 'Modern UI',
-      subtitle: 'Awwwards Glassmorphism Aesthetics',
-      desc: 'Bespoke dark mode aesthetics, vibrant gradient lighting, and 60 FPS motion graphics that captivate visitors.',
+      title: 'Modern UI & Claymorphism',
+      subtitle: 'State of the Art Design',
+      desc: 'Soft dual-shadow claymorphic panels, curated brand palettes, and fluid 60 FPS motion micro-interactions.',
     },
     {
       icon: LifeBuoy,
@@ -44,22 +44,19 @@ export const WhyChooseUs: React.FC = () => {
   ];
 
   return (
-    <section id="why-us" className="relative py-28 bg-transparent overflow-hidden">
-      {/* Background Volumetric Lights */}
-      <div className="absolute top-1/3 left-1/4 w-[650px] h-[650px] bg-blue-600/10 rounded-full blur-[170px] pointer-events-none" />
-
+    <section id="why-us" className="relative py-16 sm:py-24 bg-transparent overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-xs">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#0878F9] font-mono text-xs font-semibold">
             <Award className="w-3.5 h-3.5" />
-            <span>The RAJ TECH Advantage</span>
+            <span>The Raj Tech IT Advantage</span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white">
-            Why Choose <span className="text-gradient-cyan">RAJ TECH SOLUTIONS</span>
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#102A43]">
+            Why Choose <span className="text-gradient-blue">Raj Tech IT</span>
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base">
+          <p className="text-[#526477] text-sm sm:text-base leading-relaxed">
             We deliver handcrafted enterprise software engineered for scale, reliability, and business growth.
           </p>
         </div>
@@ -74,21 +71,21 @@ export const WhyChooseUs: React.FC = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                transition={{ duration: 0.5, delay: idx * 0.08 }}
               >
-                <GlassCard className="h-full p-8 border-slate-800/90 hover:border-cyan-400/50 hover:shadow-[0_0_40px_rgba(0,210,255,0.25)] group transition-all duration-300">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-700/80 group-hover:border-cyan-400 flex items-center justify-center text-cyan-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(0,210,255,0.5)] transition-all duration-300 mb-6">
+                <GlassCard className="h-full p-8 border-[#DCE7F1] group">
+                  <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-[#0878F9] group-hover:bg-[#0878F9] group-hover:text-white transition-all duration-300 mb-6 shadow-xs">
                     <IconComponent className="w-7 h-7" />
                   </div>
 
-                  <h3 className="font-display font-bold text-2xl text-white mb-1 group-hover:text-cyan-300 transition-colors">
+                  <h3 className="font-display font-bold text-2xl text-[#102A43] mb-1 group-hover:text-[#0878F9] transition-colors">
                     {item.title}
                   </h3>
-                  <div className="text-xs font-mono text-cyan-400 mb-3">
+                  <div className="text-xs font-mono text-[#0878F9] font-semibold mb-3">
                     {item.subtitle}
                   </div>
 
-                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  <p className="text-[#526477] text-xs sm:text-sm leading-relaxed">
                     {item.desc}
                   </p>
                 </GlassCard>
@@ -97,24 +94,24 @@ export const WhyChooseUs: React.FC = () => {
           })}
         </div>
 
-        {/* Animated Statistics Banner */}
-        <GlassCard className="p-8 sm:p-10 border-cyan-500/30 bg-slate-900/80 shadow-[0_0_50px_rgba(0,210,255,0.2)]">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-slate-800">
+        {/* Statistics Banner */}
+        <GlassCard className="p-8 sm:p-10 border-[#DCE7F1] bg-white">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-[#E2EBF4]">
             <div className="pt-4 md:pt-0 space-y-1">
-              <div className="font-display font-extrabold text-3xl sm:text-4xl text-white">99.9%</div>
-              <div className="text-xs text-slate-400 font-mono uppercase">Uptime & Reliability</div>
+              <div className="font-display font-black text-3xl sm:text-4xl text-[#0878F9]">99.9%</div>
+              <div className="text-xs text-[#526477] font-mono uppercase font-semibold">Uptime & Reliability</div>
             </div>
             <div className="pt-4 md:pt-0 space-y-1">
-              <div className="font-display font-extrabold text-3xl sm:text-4xl text-cyan-300">&lt; 2 Hours</div>
-              <div className="text-xs text-slate-400 font-mono uppercase">Client Inquiry SLA</div>
+              <div className="font-display font-black text-3xl sm:text-4xl text-[#0878F9]">&lt; 2 Hours</div>
+              <div className="text-xs text-[#526477] font-mono uppercase font-semibold">Client Inquiry SLA</div>
             </div>
             <div className="pt-4 md:pt-0 space-y-1">
-              <div className="font-display font-extrabold text-3xl sm:text-4xl text-white">100%</div>
-              <div className="text-xs text-slate-400 font-mono uppercase">Handcrafted Code</div>
+              <div className="font-display font-black text-3xl sm:text-4xl text-[#0878F9]">100%</div>
+              <div className="text-xs text-[#526477] font-mono uppercase font-semibold">Handcrafted Code</div>
             </div>
             <div className="pt-4 md:pt-0 space-y-1">
-              <div className="font-display font-extrabold text-3xl sm:text-4xl text-cyan-300">60 FPS</div>
-              <div className="text-xs text-slate-400 font-mono uppercase">Smooth Motion</div>
+              <div className="font-display font-black text-3xl sm:text-4xl text-[#0878F9]">60 FPS</div>
+              <div className="text-xs text-[#526477] font-mono uppercase font-semibold">Smooth Motion</div>
             </div>
           </div>
         </GlassCard>

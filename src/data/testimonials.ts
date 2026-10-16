@@ -17,7 +17,7 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
     company: 'Vanguard SaaS Labs',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
     rating: 5,
-    quote: 'RAJ TECH SOLUTIONS delivered our cloud dashboard 3 weeks ahead of schedule. The visual polish, 60 FPS animation quality, and clean React architecture set a new standard for our organization.',
+    quote: 'Raj Tech IT delivered our cloud dashboard 3 weeks ahead of schedule. The visual polish, 60 FPS animation quality, and clean React architecture set a new standard for our organization.',
     projectCategory: 'Web Application',
   },
   {
@@ -37,7 +37,7 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
     company: 'Hyperion Capital',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
     rating: 5,
-    quote: 'Working with RAJ TECH SOLUTIONS felt like having a world-class Silicon Valley engineering team. Pixel-perfect implementation, zero tech debt, and immediate communication.',
+    quote: 'Working with Raj Tech IT felt like having a world-class Silicon Valley engineering team. Pixel-perfect implementation, zero tech debt, and immediate communication.',
     projectCategory: 'Financial Dashboard',
   },
 ];

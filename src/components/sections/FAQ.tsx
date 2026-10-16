@@ -12,23 +12,20 @@ export const FAQ: React.FC = () => {
   };
 
   return (
-    <section className="relative py-28 bg-transparent overflow-hidden">
-      {/* Glow */}
-      <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[160px] pointer-events-none" />
-
+    <section className="relative py-16 sm:py-24 bg-transparent overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-cyan-400 font-mono text-xs">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#0878F9] font-mono text-xs font-semibold">
             <HelpCircle className="w-3.5 h-3.5" />
             <span>Got Questions?</span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white">
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#102A43]">
             Frequently Asked Questions
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base">
-            Everything you need to know about partnering with RAJ TECH SOLUTIONS.
+          <p className="text-[#526477] text-sm sm:text-base leading-relaxed">
+            Everything you need to know about partnering with Raj Tech IT.
           </p>
         </div>
 
@@ -40,24 +37,24 @@ export const FAQ: React.FC = () => {
               <GlassCard
                 key={item.id}
                 interactive={false}
-                className={`p-0 overflow-hidden border-slate-800/90 transition-colors duration-300 ${
-                  isOpen ? 'border-cyan-500/50 bg-slate-900/80 shadow-glow-sm' : ''
+                className={`p-0 overflow-hidden border-[#DCE7F1] transition-all duration-200 ${
+                  isOpen ? 'border-[#0878F9] shadow-md ring-1 ring-[#0878F9]/20' : ''
                 }`}
               >
                 <button
                   onClick={() => toggleAccordion(item.id)}
-                  className="w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none cursor-pointer"
+                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 focus:outline-none cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-xs font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded shrink-0">
+                    <span className="text-xs font-mono text-[#0878F9] bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded font-bold shrink-0">
                       {item.category}
                     </span>
-                    <span className="font-display font-bold text-base sm:text-lg text-white">
+                    <span className="font-display font-bold text-base sm:text-lg text-[#102A43]">
                       {item.question}
                     </span>
                   </div>
                   <ChevronDown
-                    className={`w-5 h-5 text-cyan-400 shrink-0 transition-transform duration-300 ${
+                    className={`w-5 h-5 text-[#0878F9] shrink-0 transition-transform duration-300 ${
                       isOpen ? 'rotate-180' : ''
                     }`}
                   />
@@ -69,8 +66,8 @@ export const FAQ: React.FC = () => {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="px-6 pb-6 pt-0 text-slate-300 text-xs sm:text-sm leading-relaxed border-t border-slate-800/80 mt-1"
+                      transition={{ duration: 0.25 }}
+                      className="px-5 sm:px-6 pb-6 pt-0 text-[#526477] text-xs sm:text-sm leading-relaxed border-t border-[#E2EBF4]"
                     >
                       <div className="pt-4">{item.answer}</div>
                     </motion.div>

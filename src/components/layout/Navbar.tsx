@@ -1,147 +1,219 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight, Phone, Mail } from 'lucide-react';
-import { useScrollProgress } from '../../hooks/useScrollProgress';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, ArrowRight, Phone, MessageSquare } from 'lucide-react';
+import { Link, useRouter } from '../../router/Router';
+import logoImg from '../../assets/Raj_Tech_Logo.png';
 
 export const Navbar: React.FC = () => {
-  const { isScrolled } = useScrollProgress();
+  const { currentPath } = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 15);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [currentPath]);
 
   const navLinks = [
-    { name: 'Home', href: '#hero' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Process', href: '#process' },
-    { name: 'Tech Stack', href: '#tech-stack' },
-    { name: 'Founder', href: '#founder' },
-    { name: 'Pricing', href: '#pricing' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Services', path: '/services' },
+    { name: 'Projects', path: '/projects' },
+    { name: 'Process', path: '/process' },
+    { name: 'Tech Stack', path: '/tech-stack' },
+    { name: 'Founder', path: '/founder' },
+    { name: 'Pricing', path: '/pricing' },
+    { name: 'Contact', path: '/contact' },
   ];
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+      className={`sticky top-0 inset-x-0 z-40 transition-all duration-300 bg-[#EAF6FF] border-b border-[#BFDBFE] ${
         isScrolled
-          ? 'bg-[#030712]/90 backdrop-blur-xl border-b border-cyan-500/20 py-3 shadow-[0_4px_30px_rgba(0,0,0,0.5)]'
-          : 'bg-transparent py-5'
+          ? 'shadow-[0_4px_20px_rgba(8,120,249,0.08)]'
+          : 'shadow-[0_2px_10px_rgba(8,120,249,0.04)]'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <a href="#hero" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center shadow-[0_0_20px_rgba(0,210,255,0.4)] group-hover:scale-105 transition-transform duration-300">
-              <span className="font-display font-black text-xl text-white tracking-tighter">R</span>
-              <div className="absolute inset-0 rounded-xl bg-cyan-400/20 animate-ping opacity-25 pointer-events-none" />
-            </div>
-            <div className="flex flex-col">
-              <div className="flex items-center gap-1.5">
-                <span className="font-display font-extrabold text-base sm:text-lg text-white tracking-wide group-hover:text-cyan-300 transition-colors">
-                  RAJ TECH SOLUTIONS
-                </span>
-                <span className="hidden sm:inline-block text-[10px] px-1.5 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono">
-                  v2.4
-                </span>
-              </div>
-              <span className="text-[10px] text-slate-400 tracking-wider uppercase font-medium hidden md:block">
-                Transforming Ideas Into Digital Reality
-              </span>
-            </div>
-          </a>
-
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 bg-slate-900/80 p-1.5 rounded-full border border-slate-800/80 backdrop-blur-md">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="px-3.5 py-1.5 text-xs font-medium text-slate-300 hover:text-cyan-300 hover:bg-slate-800/60 rounded-full transition-all duration-200"
-              >
-                {link.name}
-              </a>
-            ))}
-          </nav>
-
-          {/* Quick Contact & CTA */}
-          <div className="hidden lg:flex items-center gap-4">
-            <a
-              href="tel:+919442812481"
-              className="flex items-center gap-2 text-xs font-mono text-slate-300 hover:text-cyan-400 transition-colors bg-slate-900/60 px-3 py-2 rounded-lg border border-slate-800"
-              title="Call RAJ TECH SOLUTIONS"
-            >
-              <Phone className="w-3.5 h-3.5 text-cyan-400" />
-              <span>+91 9442812481</span>
-            </a>
-            <a
-              href="#contact"
-              className="relative group inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 text-xs font-semibold text-white shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(0,210,255,0.6)] hover:scale-[1.03] transition-all duration-300"
-            >
-              <span>Start Project</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-200 hover:text-cyan-400 focus:outline-none"
-            aria-label="Toggle menu"
+      <div className="max-w-7xl mx-auto px-2 min-[380px]:px-3 sm:px-6 lg:px-8 h-16 sm:h-18 lg:h-22">
+        
+        {/* DESKTOP NAVBAR (lg and up) */}
+        <div className="hidden lg:flex items-center justify-between gap-4 xl:gap-8 h-full">
+          
+          {/* Logo on Left: Fits the navbar completely flush from top to bottom */}
+          <Link
+            to="/"
+            className="h-full px-3 xl:px-4 bg-white flex items-center shrink-0 focus:outline-none"
+            aria-label="Raj Tech IT Home"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-      </div>
+            <img
+              src={logoImg}
+              alt="Raj Tech IT"
+              className="h-full w-auto object-contain block"
+            />
+          </Link>
 
-      {/* Mobile Drawer Menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="lg:hidden bg-[#030712]/95 border-b border-cyan-500/20 backdrop-blur-2xl px-4 pt-4 pb-6 mt-2 max-h-[85vh] overflow-y-auto"
-          >
-            <div className="flex flex-col gap-2">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-slate-900 hover:text-cyan-400 border border-transparent hover:border-cyan-500/20 transition-all"
+          {/* Navigation Links in Center */}
+          <nav className="flex items-center gap-1 xl:gap-1.5" aria-label="Main Navigation">
+            {navLinks.map((link) => {
+              const isActive = currentPath === link.path;
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`px-2.5 xl:px-3 py-1.5 text-xs xl:text-sm font-semibold rounded-lg transition-all duration-200 ${
+                    isActive
+                      ? 'bg-white text-[#0878F9] font-bold border border-[#BFDBFE] shadow-xs'
+                      : 'text-[#102A43] hover:text-[#0878F9] hover:bg-white/80'
+                  }`}
                 >
                   {link.name}
-                </a>
-              ))}
-              <div className="pt-4 border-t border-slate-800/80 flex flex-col gap-3">
-                <a
-                  href="tel:+919442812481"
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900 text-sm font-mono text-slate-300 border border-slate-800"
-                >
-                  <Phone className="w-4 h-4 text-cyan-400" />
-                  <span>+91 9442812481</span>
-                </a>
-                <a
-                  href="mailto:ajayarun177@gmail.com"
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900 text-sm font-mono text-slate-300 border border-slate-800 truncate"
-                >
-                  <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
-                  <span className="truncate">ajayarun177@gmail.com</span>
-                </a>
-                <a
-                  href="#contact"
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* Right Side: Phone Hotline & Start Project Button */}
+          <div className="flex items-center gap-3 shrink-0">
+            <a
+              href="tel:9442812481"
+              className="flex items-center gap-2 text-xs font-mono font-medium text-[#102A43] hover:text-[#0878F9] bg-white hover:bg-white/90 px-3.5 py-2.5 rounded-xl border border-[#BFDBFE] shadow-xs transition-all"
+              title="Call Raj Tech IT directly: 9442812481"
+            >
+              <Phone className="w-3.5 h-3.5 text-[#0878F9]" />
+              <span>+91 9442812481</span>
+            </a>
+
+            <Link
+              to="/contact"
+              className="clay-btn-primary inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 shadow-md"
+            >
+              <span>Start Project</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+        </div>
+
+        {/* MOBILE NAVBAR (< lg) */}
+        {/* Four essential elements: Left Hamburger, Exact Centre Logo (fits top to bottom), Right Phone Icon, Right Start Project Button */}
+        <div className="lg:hidden relative flex items-center justify-between w-full h-full">
+          
+          {/* Element 1: Left Corner Hamburger Menu Icon */}
+          <div className="flex items-center justify-start z-20 shrink-0">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 sm:p-2.5 rounded-xl bg-white border border-[#BFDBFE] text-[#102A43] hover:text-[#0878F9] hover:bg-white/90 focus:outline-none transition-colors cursor-pointer shadow-xs"
+              aria-label="Toggle navigation menu"
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+
+          {/* Element 2: Exact Centre Complete Logo (Fits the navbar from top to bottom like user image 1) */}
+          <div className="absolute left-1/2 -translate-x-1/2 h-full z-10 flex items-center justify-center pointer-events-auto">
+            <Link
+              to="/"
+              className="h-full px-2 min-[380px]:px-3 bg-white flex items-center justify-center focus:outline-none"
+              aria-label="Raj Tech IT Home"
+            >
+              <img
+                src={logoImg}
+                alt="Raj Tech IT"
+                className="h-full w-auto max-w-[160px] min-[390px]:max-w-[185px] sm:max-w-[220px] object-contain block"
+              />
+            </Link>
+          </div>
+
+          {/* Elements 3 & 4: Right Side Phone Icon + Start Project Button */}
+          <div className="flex items-center justify-end gap-1.5 sm:gap-2 z-20 shrink-0">
+            {/* Element 3: Phone Icon Only (Opens dialler directly to 9442812481) */}
+            <a
+              href="tel:9442812481"
+              aria-label="Call Raj Tech IT at 9442812481"
+              className="p-2 sm:p-2.5 rounded-xl bg-white hover:bg-white/90 text-[#0878F9] border border-[#BFDBFE] transition-colors shadow-xs shrink-0 flex items-center justify-center"
+              title="Call Raj Tech IT: 9442812481"
+            >
+              <Phone className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#0878F9]" />
+            </a>
+
+            {/* Element 4: Blue Start Project Button (Always visible and functional, links to /contact) */}
+            <Link
+              to="/contact"
+              className="clay-btn-primary flex items-center justify-center px-2.5 min-[380px]:px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-[11px] min-[380px]:text-xs font-bold tracking-wide shrink-0 shadow-xs whitespace-nowrap"
+            >
+              <span>Start Project</span>
+            </Link>
+          </div>
+
+        </div>
+
+      </div>
+
+      {/* Mobile Drawer Navigation (Consistent Sky-Blue Surface) */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden bg-[#EAF6FF] border-b border-[#BFDBFE] px-4 pt-3 pb-6 shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
+          
+          {/* Prominent Start Project button exposed in mobile drawer */}
+          <div className="mb-3.5">
+            <Link
+              to="/contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="clay-btn-primary flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold text-center w-full shadow-md"
+            >
+              <span>Start Project</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <nav className="flex flex-col gap-1">
+            {navLinks.map((link) => {
+              const isActive = currentPath === link.path;
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 text-sm font-semibold text-white shadow-glow-md"
+                  className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                    isActive
+                      ? 'bg-white text-[#0878F9] border border-[#BFDBFE] shadow-xs font-bold'
+                      : 'text-[#102A43] hover:bg-white/80 hover:text-[#0878F9]'
+                  }`}
                 >
-                  <span>Start Your Project</span>
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                  {link.name}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="pt-4 mt-3 border-t border-[#BFDBFE] flex flex-col gap-2.5">
+            <a
+              href="tel:9442812481"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white border border-[#BFDBFE] text-xs font-mono font-medium text-[#102A43] hover:bg-white/90 transition-colors shadow-xs"
+            >
+              <Phone className="w-4 h-4 text-[#0878F9]" />
+              <span>Call: 9442812481</span>
+            </a>
+
+            <a
+              href="https://wa.me/919442812481"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-mono font-semibold text-emerald-800 hover:bg-emerald-100/60 transition-colors shadow-xs"
+            >
+              <MessageSquare className="w-4 h-4 text-emerald-600" />
+              <span>WhatsApp: 9442812481</span>
+            </a>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
