@@ -102,52 +102,52 @@ export const Navbar: React.FC = () => {
         </div>
 
         {/* MOBILE NAVBAR (< lg) */}
-        {/* Four essential elements: Left Hamburger, Exact Centre Logo (fits top to bottom), Right Phone Icon, Right Start Project Button */}
-        <div className="lg:hidden relative flex items-center justify-between w-full h-full">
+        {/* Four essential elements in a non-overlapping flex layout: Left Hamburger, Center Logo (flush top-to-bottom), Right Phone Icon, Right Start Project Button */}
+        <div className="lg:hidden flex items-center justify-between w-full h-full gap-1 min-[380px]:gap-2 sm:gap-4">
           
           {/* Element 1: Left Corner Hamburger Menu Icon */}
-          <div className="flex items-center justify-start z-20 shrink-0">
+          <div className="flex items-center justify-start shrink-0">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 sm:p-2.5 rounded-xl bg-white border border-[#BFDBFE] text-[#102A43] hover:text-[#0878F9] hover:bg-white/90 focus:outline-none transition-colors cursor-pointer shadow-xs"
+              className="p-1.5 min-[380px]:p-2 sm:p-2.5 rounded-lg sm:rounded-xl bg-white border border-[#BFDBFE] text-[#102A43] hover:text-[#0878F9] hover:bg-white/90 focus:outline-none transition-colors cursor-pointer shadow-xs"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-4.5 h-4.5 sm:w-5 sm:h-5" /> : <Menu className="w-4.5 h-4.5 sm:w-5 sm:h-5" />}
             </button>
           </div>
 
-          {/* Element 2: Exact Centre Complete Logo (Fits the navbar from top to bottom like user image 1) */}
-          <div className="absolute left-1/2 -translate-x-1/2 h-full z-10 flex items-center justify-center pointer-events-auto">
+          {/* Element 2: Center Logo (Fits flush top-to-bottom in white container, scaled to never overlap) */}
+          <div className="flex-1 flex items-center justify-center min-w-0 h-full">
             <Link
               to="/"
-              className="h-full px-2 min-[380px]:px-3 bg-white flex items-center justify-center focus:outline-none"
+              className="h-full px-2 min-[380px]:px-3 bg-white flex items-center justify-center focus:outline-none shrink-0"
               aria-label="Raj Tech IT Home"
             >
               <img
                 src={logoImg}
                 alt="Raj Tech IT"
-                className="h-full w-auto max-w-[160px] min-[390px]:max-w-[185px] sm:max-w-[220px] object-contain block"
+                className="h-7 min-[360px]:h-8 min-[390px]:h-9 sm:h-11 w-auto max-w-[110px] min-[360px]:max-w-[125px] min-[390px]:max-w-[145px] sm:max-w-[185px] object-contain block"
               />
             </Link>
           </div>
 
           {/* Elements 3 & 4: Right Side Phone Icon + Start Project Button */}
-          <div className="flex items-center justify-end gap-1.5 sm:gap-2 z-20 shrink-0">
+          <div className="flex items-center justify-end gap-1 min-[380px]:gap-1.5 sm:gap-2 shrink-0">
             {/* Element 3: Phone Icon Only (Opens dialler directly to 9442812481) */}
             <a
               href="tel:9442812481"
               aria-label="Call Raj Tech IT at 9442812481"
-              className="p-2 sm:p-2.5 rounded-xl bg-white hover:bg-white/90 text-[#0878F9] border border-[#BFDBFE] transition-colors shadow-xs shrink-0 flex items-center justify-center"
+              className="p-1.5 min-[380px]:p-2 sm:p-2.5 rounded-lg sm:rounded-xl bg-white hover:bg-white/90 text-[#0878F9] border border-[#BFDBFE] transition-colors shadow-xs shrink-0 flex items-center justify-center"
               title="Call Raj Tech IT: 9442812481"
             >
-              <Phone className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#0878F9]" />
+              <Phone className="w-3.5 h-3.5 min-[380px]:w-4 min-[380px]:h-4 sm:w-4.5 sm:h-4.5 text-[#0878F9]" />
             </a>
 
             {/* Element 4: Blue Start Project Button (Always visible and functional, links to /contact) */}
             <Link
               to="/contact"
-              className="clay-btn-primary flex items-center justify-center px-2.5 min-[380px]:px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-[11px] min-[380px]:text-xs font-bold tracking-wide shrink-0 shadow-xs whitespace-nowrap"
+              className="clay-btn-primary flex items-center justify-center px-2 min-[360px]:px-2.5 min-[390px]:px-3.5 sm:px-4 py-1.5 min-[380px]:py-2 sm:py-2.5 rounded-lg sm:rounded-xl text-[10px] min-[360px]:text-[11px] min-[390px]:text-xs font-bold tracking-tight sm:tracking-wide shrink-0 shadow-xs whitespace-nowrap"
             >
               <span>Start Project</span>
             </Link>
