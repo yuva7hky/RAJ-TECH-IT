@@ -4,6 +4,7 @@ import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { FloatingContact } from './components/layout/FloatingContact';
 import { IntroVideo } from './components/layout/IntroVideo';
+import { MobileBottomNav } from './components/layout/MobileBottomNav';
 
 // Separate Page Components
 import { HomePage } from './pages/HomePage';
@@ -52,7 +53,7 @@ function AppContent() {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-[#F4F8FC] text-[#102A43] overflow-x-hidden">
+    <div className="relative min-h-screen flex flex-col bg-[#F4F8FC] text-[#102A43] overflow-x-hidden pb-16 md:pb-0">
       
       {/* 1. Intro Video Experience (Plays on first visit of browser session) */}
       {!introCompleted && (
@@ -72,6 +73,9 @@ function AppContent() {
 
       {/* 5. Floating Quick Contact Shortcut */}
       <FloatingContact />
+
+      {/* 6. Mobile Bottom Navigation Bar (Mobile only) */}
+      <MobileBottomNav />
 
     </div>
   );
